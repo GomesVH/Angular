@@ -1,0 +1,73 @@
+﻿@*
+    estabelecer a relação entre view e model
+*@
+
+@model Reserva
+
+@{
+    ViewData["Title"] = "Inserir registro";
+}
+
+@* implementar a estrutura html necessaria *@
+
+<h2> 
+    @ViewData["Title"]
+    <a asp-action="Index" class="btn btn-sm btn-secondary">
+        <img src="~/css/NovaPasta/seta-para-a-esquerda.png"                                      style="max-width:70px;                                                                   max-height:45px;                                                                         width: auto;                                                                         height: auto;" />
+    </a>
+</h2>
+
+<form asp-action="AddReservation" method="post">
+    <div class="form-group">
+         <label for="Nome">Nome:</label>
+         <input name="Nome" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+         <label for="Sobrenome">Sobrenome:</label>
+         <input name="Sobrenome" type="text" class="form-control" />
+    </div>
+
+    <div class="form-group">
+         <label for="PontoA">Local de Partida:</label>
+         <input name="PontoA" type="text" class="form-group"/>
+    </div>
+
+    <div class="form-group">
+        <label for="PontoB">Local de Chegada:</label>
+        <input name="PontoB" type="text" class="form-control"/>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-sm btn-primary">
+            <img src="~/css/NovaPasta/atualizar.png"                                           style="max-width:45px;                                                         max-height:20px;                                                             width: auto;                                                                 height: auto;"/>
+        </button>
+    </div>
+
+</form>
+
+<h2>Reserva Realizada</h2>
+@if (Model != null)
+{
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Local de Partida</th>
+                <th>Local de Chegada</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Nome</td>
+                <td>@Model.Sobrenome</td>
+                <td>@Model.PontoA</td>
+                <td>@Model.PontoB</td>
+            </tr>
+        </tbody>
+    </table>
+}

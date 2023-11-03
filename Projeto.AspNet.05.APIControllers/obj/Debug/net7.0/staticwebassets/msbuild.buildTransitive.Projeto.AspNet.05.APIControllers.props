@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Projeto.AspNet.05.APIControllers.props" />
+</Project>

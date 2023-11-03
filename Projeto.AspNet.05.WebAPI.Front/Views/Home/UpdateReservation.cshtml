@@ -1,0 +1,73 @@
+﻿@* estabelecer a comunicação entre a View e o Model *@
+
+@model Reserva
+
+@{
+    ViewData["Title"] = "Atualizar Reserva";
+}
+
+@* implemenatar a estrutura HTML necessária *@
+
+<h2>
+    Atualize a Reserva 
+    <a asp-action="Index" class="btn btn-sm btn-secondary"><img src="~/css/NovaPasta/seta-para-a-esquerda.png"                                                                           style="max-width:70px;                                                                   max-height:45px;                                                                          width: auto;                                                                         height: auto;" /></a>
+</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Id">Id</label>
+        <input asp-for="Id" class="form-control" readonly/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Nome">Nome</label>
+        <input asp-for="Nome" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Sobrenome">Sobrenome</label>
+        <input asp-for="Sobrenome" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PontoA">Ponto de Partida</label>
+        <input asp-for="PontoA" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PontoB">Local de Chegada</label>
+        <input asp-for="PontoB" class="form-control"/>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-sm btn-primary">
+            <img src="~/css/NovaPasta/atualizar.png"                                           style="max-width:45px;                                                          max-height:20px;                                                             width: auto;                                                                height: auto;"/>
+        </button>
+    </div>
+</form>
+
+<h2>Reserva Atualizada</h2>
+
+@if (ViewBag.Result == "Success")
+{
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Local de Partida</th>
+                <th>Local de Chegada</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Nome</td>
+                <td>@Model.Sobrenome</td>
+                <td>@Model.PontoA</td>
+                <td>@Model.PontoB</td>
+            </tr>
+        </tbody>
+    </table>
+}

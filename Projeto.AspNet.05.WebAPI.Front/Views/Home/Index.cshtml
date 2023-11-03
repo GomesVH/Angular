@@ -1,0 +1,57 @@
+﻿@* estabelecer a "comunicação" entre a view e o model *@
+
+@model IEnumerable<Reserva>
+
+    @* nomear a view *@
+
+@{
+    ViewData["Title"] = "Lista de Reservas";
+}
+
+@* estabelecer a estrutura html necessaria *@
+
+<h2>@ViewData["Title"]</h2>
+
+<a asp-action="AddReservation"                                                             class="btn btn-sm btn-primary">Criar Reserva</a>
+
+<a asp-action="GetReservation"                                                                class="btn btn-sm btn-secondary">Obter Reserva</a>
+
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Local de Partida</th>
+            <th>Local de Chegada</th>
+            <th>Atualizar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var registro in Model)
+        {
+        <tr>
+            <td>@registro.Id</td>
+            <td>@registro.Nome</td>
+            <td>@registro.Sobrenome</td>
+            <td>@registro.PontoA</td>
+            <td>@registro.PontoB</td>
+            <td>
+                <a asp-action="UpdateReservation" asp-route-id="@registro.Id">
+                    <img src="~/css/NovaPasta/atualizar.png"                                           style="max-width:45px;                                                     max-height:20px;                                                          width: auto;                                                              height: auto;"/>
+                </a>
+            </td>
+            <td>
+                <form asp-action="DeleteReservation" method="post">
+                    <input type="hidden" value="@registro.Id" name="IdReserva"/>
+                    <button type="submit">
+                        <img src="~/css/NovaPasta/cruz.png"                                           style="max-width:45px;                                                     max-height:20px;                                                       width: auto;                                                           height: auto;"/>
+                     </button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
